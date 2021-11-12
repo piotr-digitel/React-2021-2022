@@ -96,7 +96,7 @@ ReactDOM.render(
 );
 ```
 
-## Zadanie 10 - Dodanie właściwości do komponentów NazwaTwojegoKomponentu oraz NazwaTwojegoKomponentu2
+## Zadanie 10 - Dodanie właściwości (props) do komponentów.
 
 Zmodyfikuj komponenty NazwaTwojegoKomponentu oraz NazwaTwojegoKomponentu2 w taki sposób, aby wyświetlały teksty wewnątrz paragrafu < p> oraz linku < a> z właściwości (propsów) zamiast bezposrednio z funkcji render.
 
