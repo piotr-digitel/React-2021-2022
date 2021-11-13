@@ -116,4 +116,5 @@ Wyświetlane komponenty potrzebują rodzica, który będzie miał możliwość p
 
 ## Praca domowa
 
-https://css-tricks.com/difference-between-types-of-css-variables/
+https://css-tricks.com/difference-between-types-of-css-variables/ - dlaczego warto korzystać z SASSA
+https://www.youtube.com/watch?v=opNgrPv3Qw8 - 2 godzinny kurs HTML / CSS dla początkujących
