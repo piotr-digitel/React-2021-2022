@@ -18,7 +18,7 @@ function App() {
             <Header timerValue={timerValue} />
             <div className={styles.columnsWrapper}>
                 <LeftColumn timerValue={timerValue} text={leftColumnText} />
-                <RightColumn text={rightColumnText} />
+                <RightColumn timerValue={timerValue} text={rightColumnText} />
             </div>
         </ div>
     );
