@@ -28,7 +28,7 @@ class LeftColumn extends React.Component {
         return (
             <div className={commonColumnsStyles.App}>
                 <header className={commonColumnsStyles.AppHeader}>
-                    <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />
+                    <img src={timerValue % 2 !== 0 && logo} className={commonColumnsStyles.AppLogo} alt="" />
                     <p> {`${text} count from ${counter} only even numbers`} </p>
                     <p> {counter + (timerValue % 2 === 0 ? timerValue : timerValue -1 )} </p>
                 </header>
