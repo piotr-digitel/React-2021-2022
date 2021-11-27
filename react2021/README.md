@@ -87,5 +87,13 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
     }
   ```
   
-  
+      ## Zadanie 6 - cykle życia - shouldComponentUpdate - Left column count from 100 only even numbers – alternative
+      
+Skoro nie powinniśmy używać metody shouldComponentUpdate do blokowania przerenderowania komponentu to zastąpmy to rozwiązanie prawidłowym rozwiązując problem parzystego licznika. Rozwiązanie okazuje się bardzo proste, wystarczy odejmować od liczby nieparzystej 1 tuż przed wyrenderowaniem, a w przypadku gdy timer jest parzysty wyświetlać jego wartość normalnie (rozwiązanie zostało "przemycone" na jednym se slajdów wykładu, znajdź i skorzystaj - jeden ze slajdów dotyczących metody render() w cyklu życia). 
+
+ ## Zadanie 7 – renderowanie warunkowe
+Zmodyfikuj metody render w komponentach LeftColumn oraz RightColumn w taki sposób aby:
+- lewa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest parzysta
+- prawa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest nieparzysta
+
   
