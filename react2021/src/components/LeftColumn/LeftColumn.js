@@ -15,13 +15,6 @@ class LeftColumn extends React.Component {
         };
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if (nextProps.timerValue % 2 === 0) {
-    //         return true
-    //     }
-    //     return false
-    // }
-
     render() {
         const { timerValue, text } = this.props;
         const { counter } = this.state;
