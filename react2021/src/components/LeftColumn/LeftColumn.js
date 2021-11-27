@@ -15,13 +15,21 @@ class LeftColumn extends React.Component {
         };
     }
 
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (nextProps.timerValue % 2 === 0) {
+    //         return true
+    //     }
+    //     return false
+    // }
+
     render() {
+        const { timerValue } = this.props;
         return (
             <div className={commonColumnsStyles.App}>
                 <header className={commonColumnsStyles.AppHeader}>
                     <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />
-                    <p> {`${this.props.text} count from ${this.state.counter}`} </p>
-                    <p> {this.state.counter + this.props.timerValue} </p>
+                    <p> {`${this.props.text} count from ${this.state.counter} only even numbers`} </p>
+                    <p> {this.state.counter + (timerValue % 2 === 0 ? timerValue : timerValue -1 )} </p>
                 </header>
             </div>
         );
