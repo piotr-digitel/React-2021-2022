@@ -23,13 +23,14 @@ class LeftColumn extends React.Component {
     // }
 
     render() {
-        const { timerValue } = this.props;
+        const { timerValue, text } = this.props;
+        const { counter } = this.state;
         return (
             <div className={commonColumnsStyles.App}>
                 <header className={commonColumnsStyles.AppHeader}>
                     <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />
-                    <p> {`${this.props.text} count from ${this.state.counter} only even numbers`} </p>
-                    <p> {this.state.counter + (timerValue % 2 === 0 ? timerValue : timerValue -1 )} </p>
+                    <p> {`${text} count from ${counter} only even numbers`} </p>
+                    <p> {counter + (timerValue % 2 === 0 ? timerValue : timerValue -1 )} </p>
                 </header>
             </div>
         );
