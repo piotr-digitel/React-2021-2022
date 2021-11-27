@@ -1,1 +1,91 @@
-# PS 2 - 28.11.2021
+# PS 2 - 28.11.2021 - Kompozycja / Cykle życia
+
+Aktualny szablon aplikacji posiada 3 główne komponenty:
+- Header - nagłówek
+- Left Column - lewa kolumna, będziemy tutaj zajmować się komponentami klasowymi
+- Right Coumn - prawa kolumna, alternatywa dla lewej, lecz utrzymywana w komponencie funkcyjnym
+
+## Zadanie 1 - przekazywanie właściwości (props) cd.
+
+  Przekaż komponentom LeftColumn oraz RightColumn wyświetlany text jako wlaściwość zamiast podawania jej wewnątrz komponentu jak jest to robione teraz.
+  Wymagania:
+  - przekazywane teksty powinny być najpierw zdefiniowane w zmiennych komponentu App
+    ```
+    const leftColumnText = '...'
+    const rightColumnText = '...'
+    ```
+  - powinny zostać przekazane jako właściwość (props) o nazwie "text"
+  - Oba komponenty tj. LeftColumn oraz RightColumn powinny mieć zdefiniowaną domyślną wartość dla właściwości "text", niech tą wartością będzie "Missing text from props". Wartość domyślna będzie wyświetlana gdy użytkownik nie poda do komponentu właściwości "text".
+
+## Zadanie 2 - stan komponentu - Licznik
+
+  Celem tego zadania jest utworzenie licznika który będzie miał stan początkowy 0 i jego wartość będzie się zwiększać o 1 co sekundę. Licznik powinien zapisywać aktualną wartość w stanie komponentu App o nazwie "timerValue", zatem powinieneś:
+  - komponent App jest funkcyjny zatem do operowania na stanie użyjemy hooka useState https://reactjs.org/docs/hooks-state.html
+  - pamiętaj o zaimportowaniu reacta i hooka useState na górze komponentu
+  - utwórz stan z wartością początkową 0 za pomocą hooka
+  - napisz funkcję setTimeout która co sekundę będzie zwiększać wartość stanu o 1
+  ```
+  setTimeout(() => {
+  ...
+  }, 1000)
+  ```
+  - stan "timerValue" przekaż jako właściwość do komponentu Header i wyświetl tą wartość zamiast tekstu "Missing clock :(" 
+
+## Zadanie 3 - cykle życia - Kontruktor - Left column count from 100
+
+  Lewa kolumna jest komponentem klasowym, zatem jedną z metod cyklu życia jest Kontruktor. To właśnie tam definiujemy wartości początkowe dla stanów. Komponent LeftColumn będzie pokazywał zawsze wartość o 100 większą od liczby w Headerze, aby to uczynić wykorzystajmy stan który będzie miał wartość początkową 100 a komponent będzie sumował tą wartość z wartością głównego licznika. Zatem:
+  - komponent LeftColumn będzie potrzebował wartości "timerValue" z glównego licznika, przekaż ją zatem z komponentu rodzica (App).
+  - utwórzmy stan "initialLeftCounterValue" o wartości 100, potrzebujmy w tym celu użyć konstruktora, przykład poniżej
+
+  ```
+    constructor(props) {
+        super(props);
+        this.state = {
+            ...
+        };
+    }
+```
+  - wyświetl wartość utworzonego stanu  w paragrafie <p> ponizej napisu "Left column" i sprawdź rezultat na ekranie (powinieneś zobaczyć 100)
+  - zmodyfikuj utworzony paragraf w taki sposób aby zamiast wartości 100 wyświetlał (this.state.initialLeftCounterValue + this.props.timerValue) (jeżeli odlicza od 100 do góry wygrałeś !!!). Komponent LeftColumn co sekundę dostaje nową wartość w propsie timerValue która jest elementem wyświetlanym, zatem komponent LeftColumn jest prerenderowywany.
+  - aby było wiadomo co robi lewa kolumna zmieńmy jej tekst z "Left column" na "Left column count from 100", przy czym: 
+      - "Left column" jest tekstem z propsa
+      - "count from" - będzie po prostu wpisanym na sztywno tekstem
+      - 100 - jest naszą wartością this.state.initialLeftCounterValue 
+  - połączenie tych 3 wartości możemy zrobić bezpośrednio w JSX za pomocą
+   ```
+  <p> {`${this.props.text} count from ${this.state.counter}`} </p>
+  ```
+
+  ## Zadanie 4 - cykle życia (funkcyjne) - Right column count from 5000
+
+  Wykokajmy dla porównania bardzo podobne zadanie na komponencie funkcyjnym (rightColumn), przypominam, że korzystałeś juz z hooka useState w komponencie App. W ramach tego zadania powinienes:
+  - przekazać właściwość timera z komponentu App do RightColumn
+  - utworzyć domyślny stan initialRightCounterValue o wartości 5000
+  - zmodyfikować funkcję return w taki sposób aby wyświetlała tekst oraz wartość adekwatnie do kolumny lewej
+  
+  ## Zadanie 5 - cykle życia - shouldComponentUpdate - Left column count from 100 **only even numbers** 
+  
+  Metoda shouldComponentUpdate pozwala na zablokowanie przerenderowania komponentu w określonych warunkach. Nie jest to co prawda rekomendowane działanie, ponieważ komponent powinien się przerenderowywać zawsze przy zmianie właściwości (bardziej dosadny przykład będzie na jednych z kolejnyc zajęć), ale dla celów zapoznawczych skorzystajmy z tej metody cyklu życia.
+  
+  Dodajmy zatem do komponentu LeftColumn metodę shouldComponentUpdate która wykona rerender komponentu tylko jeżeli nowa wartość przychodząca  licznika będzie parzysta 
+  
+  Aby sprawdzić czy liczba jest parzysta sprawdzamy jej resztę z dzielenia (modulo) / 2 np. 
+  
+  ```
+  100 % 2 === 0 // true
+  101 % 2 === 0 // false
+  ```
+  
+  wiedząc zatem jak sprzwdzić parzystość shouldComponentUpdate do komponentu (pamimętaj, że parametr nextProps zawiera właściwości "z przyszłości" czyli te które mają zostać wyświetlone a nie aktualne), szablon poniżej
+  
+  ```
+    shouldComponentUpdate(nextProps, nextState) {
+      if (...) {
+        return true
+      }
+      return false
+    }
+  ```
+  
+  
+  
