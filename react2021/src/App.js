@@ -4,15 +4,17 @@ import Header from './components/Header/Header';
 import styles from './App.module.scss';
 
 function App() {
-  return (
-    <div className={styles.appWrapper}>
-      <Header />
-      <div className={styles.columnsWrapper}>
-        <LeftColumn />
-        <RightColumn />
-      </div>
-    </ div>
-  );
+    const leftColumnText = 'Left column';
+    const rightColumnText = 'Right column';
+    return (
+        <div className={styles.appWrapper}>
+            <Header />
+            <div className={styles.columnsWrapper}>
+                <LeftColumn text={leftColumnText} />
+                <RightColumn text={rightColumnText} />
+            </div>
+        </ div>
+    );
 }
 
 export default App;
