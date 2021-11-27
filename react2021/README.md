@@ -87,13 +87,41 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
     }
   ```
   
-      ## Zadanie 6 - cykle życia - shouldComponentUpdate - Left column count from 100 only even numbers – alternative
+ ## Zadanie 6 - cykle życia - shouldComponentUpdate - Left column count from 100 only even numbers – alternative
       
 Skoro nie powinniśmy używać metody shouldComponentUpdate do blokowania przerenderowania komponentu to zastąpmy to rozwiązanie prawidłowym rozwiązując problem parzystego licznika. Rozwiązanie okazuje się bardzo proste, wystarczy odejmować od liczby nieparzystej 1 tuż przed wyrenderowaniem, a w przypadku gdy timer jest parzysty wyświetlać jego wartość normalnie (rozwiązanie zostało "przemycone" na jednym se slajdów wykładu, znajdź i skorzystaj - jeden ze slajdów dotyczących metody render() w cyklu życia). 
 
- ## Zadanie 7 – renderowanie warunkowe
+ ## Zadanie 7 – renderowanie warunkowe - useEffect Hook - RightColumn
+ 
+ Hook useEffect pełni funkcję 3 metod z komponentu klasowego: componentDidMount / componentDidUpdate / componentWillUnmount. Wykorzystajmy te 3 cykle życia w komponencie RightColumn aby uzyskać następujący efekt.
+ - w momencie wyrenderowania wyświetl w konsoli "right column" - console.log('right column')
+ - w momencie przerenderowania oraz parzystego licznika ustaw document.title = ":)"
+ - w momencie przerenderowania oraz nieparzystego licznika ustaw document.title = ":("
+ - w momencie odmontowania komponentu ustaw document.title = " ^^__^^ "
+ 
+ Do uzyskania powyższych wymagań będziesz potrzebował dwóch użyć useEffect
+ 
+```
+useEffect(() => {
+  // ... aktualizacja
+  return () => {
+  // ... odmontowywanie
+  };
+},[props.timerValue]);
+
+useEffect(() => {
+  // ... montowanie (tylko 1 raz)
+}, []);
+```
+ 
+ Aby odmontować komponeent RightColumn dodaj warunek który będzie wyświetlał RightColumn tylko gdy licznik < 20
+   ```
+   {timerValue < 20 && <RightColumn timerValue={timerValue} text={rightColumnText} />}
+   ```
+
+
+ ## Zadanie 8 – renderowanie warunkowe
 Zmodyfikuj metody render w komponentach LeftColumn oraz RightColumn w taki sposób aby:
 - lewa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest parzysta
 - prawa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest nieparzysta
-
   
