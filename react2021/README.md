@@ -1,4 +1,5 @@
 # PS 2 - 28.11.2021 - Kompozycja / Cykle życia
+Dokumentacja: https://pl.reactjs.org/docs/react-component.html#the-component-lifecycle
 
 Aktualny szablon aplikacji posiada 3 główne komponenty:
 - Header - nagłówek
@@ -7,7 +8,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
 
 ## Zadanie 1 - przekazywanie właściwości (props) cd.
 
-  Przekaż komponentom LeftColumn oraz RightColumn wyświetlany text jako wlaściwość zamiast podawania jej wewnątrz komponentu jak jest to robione teraz.
+  Przekaż komponentom LeftColumn oraz RightColumn wyświetlany text jako właściwość zamiast podawania jej wewnątrz komponentu jak jest to robione teraz.
   Wymagania:
   - przekazywane teksty powinny być najpierw zdefiniowane w zmiennych komponentu App
     ```
@@ -15,7 +16,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
     const rightColumnText = '...'
     ```
   - powinny zostać przekazane jako właściwość (props) o nazwie "text"
-  - Oba komponenty tj. LeftColumn oraz RightColumn powinny mieć zdefiniowaną domyślną wartość dla właściwości "text", niech tą wartością będzie "Missing text from props". Wartość domyślna będzie wyświetlana gdy użytkownik nie poda do komponentu właściwości "text".
+  - Oba komponenty tj. LeftColumn oraz RightColumn powinny mieć zdefiniowaną domyślną wartość dla właściwości "text", niech tą wartością będzie "Missing text from props". Wartość domyślna będzie wyświetlana, gdy użytkownik nie poda do komponentu właściwości "text".
 
 ## Zadanie 2 - stan komponentu - Licznik
 
@@ -31,7 +32,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
   ```
   - stan "timerValue" przekaż jako właściwość do komponentu Header i wyświetl tą wartość zamiast tekstu "Missing clock :(" 
 
-## Zadanie 3 - cykle życia - Kontruktor - Left column count from 100
+## Zadanie 3 - cykle życia - Konstruktor - Left column count from 100
 
   Lewa kolumna jest komponentem klasowym, zatem jedną z metod cyklu życia jest Kontruktor. To właśnie tam definiujemy wartości początkowe dla stanów. Komponent LeftColumn będzie pokazywał zawsze wartość o 100 większą od liczby w Headerze, aby to uczynić wykorzystajmy stan który będzie miał wartość początkową 100 a komponent będzie sumował tą wartość z wartością głównego licznika. Zatem:
   - komponent LeftColumn będzie potrzebował wartości "timerValue" z glównego licznika, przekaż ją zatem z komponentu rodzica (App).
@@ -46,7 +47,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
     }
 ```
   - wyświetl wartość utworzonego stanu  w paragrafie <p> ponizej napisu "Left column" i sprawdź rezultat na ekranie (powinieneś zobaczyć 100)
-  - zmodyfikuj utworzony paragraf w taki sposób aby zamiast wartości 100 wyświetlał (this.state.initialLeftCounterValue + this.props.timerValue) (jeżeli odlicza od 100 do góry wygrałeś !!!). Komponent LeftColumn co sekundę dostaje nową wartość w propsie timerValue która jest elementem wyświetlanym, zatem komponent LeftColumn jest prerenderowywany.
+  - zmodyfikuj utworzony paragraf w taki sposób aby zamiast wartości 100 wyświetlał (this.state.initialLeftCounterValue + this.props.timerValue) (jeżeli odlicza od 100 do góry wygrałeś !!!). Komponent LeftColumn co sekundę dostaje nową wartość w propsie timerValue która jest elementem wyświetlanym, zatem komponent LeftColumn jest przerenderowywany.
   - aby było wiadomo co robi lewa kolumna zmieńmy jej tekst z "Left column" na "Left column count from 100", przy czym: 
       - "Left column" jest tekstem z propsa
       - "count from" - będzie po prostu wpisanym na sztywno tekstem
@@ -58,7 +59,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
 
   ## Zadanie 4 - cykle życia (funkcyjne) - Right column count from 5000
 
-  Wykokajmy dla porównania bardzo podobne zadanie na komponencie funkcyjnym (rightColumn), przypominam, że korzystałeś juz z hooka useState w komponencie App. W ramach tego zadania powinienes:
+  Wykonajmy dla porównania bardzo podobne zadanie na komponencie funkcyjnym (rightColumn), przypominam, że korzystałeś juz z hooka useState w komponencie App. W ramach tego zadania powinieneś:
   - przekazać właściwość timera z komponentu App do RightColumn
   - utworzyć domyślny stan initialRightCounterValue o wartości 5000
   - zmodyfikować funkcję return w taki sposób aby wyświetlała tekst oraz wartość adekwatnie do kolumny lewej
@@ -76,7 +77,7 @@ Aktualny szablon aplikacji posiada 3 główne komponenty:
   101 % 2 === 0 // false
   ```
   
-  wiedząc zatem jak sprzwdzić parzystość shouldComponentUpdate do komponentu (pamimętaj, że parametr nextProps zawiera właściwości "z przyszłości" czyli te które mają zostać wyświetlone a nie aktualne), szablon poniżej
+  wiedząc zatem jak sprawdzić parzystość shouldComponentUpdate do komponentu (pamiętaj, że parametr nextProps zawiera właściwości "z przyszłości" czyli te które mają zostać wyświetlone a nie aktualne), szablon poniżej
   
   ```
     shouldComponentUpdate(nextProps, nextState) {
@@ -119,9 +120,14 @@ useEffect(() => {
    {timerValue < 20 && <RightColumn timerValue={timerValue} text={rightColumnText} />}
    ```
 
-
  ## Zadanie 8 – renderowanie warunkowe
 Zmodyfikuj metody render w komponentach LeftColumn oraz RightColumn w taki sposób aby:
 - lewa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest parzysta
 - prawa kolumna wyświetlała logo tylko gdy wartość głównego licznika jest nieparzysta
   
+## Zadanie 9 
+Wykonaj to samo co w zadaniu 7 dla komponentu LeftColumn, użyj zatem 3 metod cyklu życia: 
+- componentDidMound
+- componentDidUpdate
+- componentWillUnmount
+w komponencie klasowym.
