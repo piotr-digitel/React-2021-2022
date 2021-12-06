@@ -21,12 +21,17 @@ function App() {
     }
   }, [timerValue]);
 
+  const setTimerFromValue = (valueFromChildComponent) => {
+    console.log('valueFromChildComponent', typeof valueFromChildComponent)
+    setTimerValue(parseInt(valueFromChildComponent))
+  }
+
   return (
     <div className={styles.appWrapper}>
       <Header currentTimerValue={timerValue} />
       <div className={styles.columnsWrapper}>
         <LeftColumn />
-        <RightColumn onDoubleButtonClick={resetTimer} />
+        <RightColumn onSetTimerFromValue={setTimerFromValue} onDoubleButtonClick={resetTimer} />
       </div>
     </div>
   );
