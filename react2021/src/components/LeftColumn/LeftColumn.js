@@ -4,13 +4,27 @@ import logo from '../.././logo.svg';
 import commonColumnsStyles from '../../common/styles/Columns.module.scss'
 
 class LeftColumn extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        counter: 0,
+      }
+      this.handleIncreaseCounter = this.handleIncreaseCounter.bind(this);
+    }
+
+    handleIncreaseCounter() {
+      this.setState( {
+        counter: this.state.counter + 1,
+       })
+    }
     render() {
+      const { counter } = this.state;
         return (
             <div className={commonColumnsStyles.App}>
               <header className={commonColumnsStyles.AppHeader}>
-                <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />
+                <button onClick={this.handleIncreaseCounter}> INCREASE BY 1 </button>
                 <p>
-                  Left column
+                  {counter}
                 </p>
               </header>
             </div>
