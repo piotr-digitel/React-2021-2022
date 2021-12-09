@@ -21,8 +21,8 @@ function App() {
     }
   }, [timerValue]);
 
-  const setTimerFromValue = (valueFromChildComponent) => {
-    console.log('valueFromChildComponent', typeof valueFromChildComponent)
+  const setTimerToValue = (valueFromChildComponent) => {
+    console.log('valueFromChildComponent', valueFromChildComponent)
     setTimerValue(parseInt(valueFromChildComponent))
   }
 
@@ -30,8 +30,8 @@ function App() {
     <div className={styles.appWrapper}>
       <Header currentTimerValue={timerValue} />
       <div className={styles.columnsWrapper}>
-        <LeftColumn />
-        <RightColumn onSetTimerFromValue={setTimerFromValue} onDoubleButtonClick={resetTimer} />
+      { timerValue < 500 && <LeftColumn onSetTimerToValue={setTimerToValue} currentTimerValue={timerValue} />}
+        <RightColumn onSetTimerToValue={setTimerToValue} onDoubleButtonClick={resetTimer} />
       </div>
     </div>
   );

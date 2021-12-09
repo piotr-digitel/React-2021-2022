@@ -15,7 +15,7 @@ function RightColumn(props) {
   };
 
   const handleSetTimerFromValue = () => {
-    props.onSetTimerFromValue(currentInputValue);
+    props.onSetTimerToValue(currentInputValue);
   }
 
   return (
