@@ -47,6 +47,16 @@ która będzie wywołaniem zwrotnym (będzie aktytować) metodę wewnętrzną "r
   };
 ```
 która ustawi stan "timerValue" na 0 
+# Zadanie 4 - modyfikowanie lcznikiem z komponentu dziecka
+W komponencie RightColumn dodajmy 2 elementy:
+- przycick z tekstem "Set value from input to timer"
+- input type='number'
+
+Zadanie polega na tym aby po wpisaniu wartości liczbowej do inputa i kliknięciu przycisku, wartość licznika zaczęła odliczać od podanej wartości. Np. po wpisaniu 200, licznik zmieni swoją wartość na 200 i będzie liczył dalej.
+
+Zadanie jest podobne do poprzedniego, z tą różnicą, że do komponentu rodzica musimy przekazać dodawkowo wartość.
+
+Uwaga: Zwróć uwage na tym zmiennej którą będziesz przekazywał
 # Zadanie 5 - cykle życia - komponent klasowy / if guard render
 Celem tego zadania jest zrozumienie i przetestowanie działania metod cyklu życia w komponencie klasowym (Left Column) oraz użycie wzorca live guard w celu porównania jego działania z renderowaniem warunkowym.
 
