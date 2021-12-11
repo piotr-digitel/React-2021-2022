@@ -4,8 +4,6 @@ Dokumentacja
 Obsługa zdarzeń (events handling): https://pl.reactjs.org/docs/handling-events.html
 Zdarzenia syntetyczne (Syntetic events): https://pl.reactjs.org/docs/events.html#gatsby-focus-wrapper
 
-# PS 1 - 11.12.2021 Zdarzenia (events) / formularze
-
 # Zadanie 1 - event onClick
 
 Komponent LeftColumn powinien:
