@@ -12,15 +12,15 @@ class Header extends React.Component {
     }
 
     handleSearchPhraseChange = (event) => {
-        this.setState({ searchPhrase: event.target.value })
+        this.setState({ searchPhrase: event.target.value }, () => this.filterVehicles());
     }
 
     handleOnlyCarsChange = (event) => {
-        this.setState({ searchOnlyCars: event.target.checked })
+        this.setState({ searchOnlyCars: event.target.checked }, () => this.filterVehicles());
     }
 
     handleSelectEngineType = (event) => {
-        this.setState({ searchEngineType: event.target.value })
+        this.setState({ searchEngineType: event.target.value }, () => this.filterVehicles());
     }
 
     filterVehicles = () => {
@@ -35,7 +35,6 @@ class Header extends React.Component {
         if (searchEngineType) {
             filteredVehicles = filteredVehicles.filter((vehicle) => vehicle.engineType === searchEngineType);
         }
-        console.log('sprawdzam aktualne filtry', filteredVehicles)
         // przekazanie wyfiltrowanych pojazdów do komponentu rodzica (App)
         this.props.sendFilteredVehiclesToParentComponent(filteredVehicles);
     }
@@ -45,19 +44,10 @@ class Header extends React.Component {
             searchPhrase: '',
             searchOnlyCars: false,
             searchEngineType: ''
-        })
+        },() => {
             this.filterVehicles();
+        });
     }
-
-    // handleResetFilters = () => {
-    //     this.setState({
-    //         searchPhrase: '',
-    //         searchOnlyCars: false,
-    //         searchEngineType: ''
-    //     },() => {
-    //         this.filterVehicles();
-    //     });
-    // }
 
     getUniqueVehicleEngineTypes = () => {
         const { vehicles } = this.props;
@@ -79,7 +69,7 @@ class Header extends React.Component {
                     <option key={'all'} value={''}>All types</option>
                     {uniqueVehicleEngineTypes.map((engineType) =><option key={engineType} value={engineType}>{engineType}</option>)}
                 </select>
-                <button onClick={this.filterVehicles}>Wyszukaj</button>
+                {/* <button onClick={this.filterVehicles}>Wyszukaj</button> */}
                 <button onClick={this.handleResetFilters}>Zresetuj filtry</button>
             </div>
           );
