@@ -48,14 +48,15 @@ class Header extends React.Component {
 
     render() {
         const uniqueVehicleEngineTypes = this.getUniqueVehicleEngineTypes();
-        const { searchPhrase, searchOnlyCars } = this.state;
+        const { searchPhrase, searchOnlyCars, searchEngineType } = this.state;
         return (
             <div className={styles.HeaderWrapper}>
                 <input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input>
                 <p> Tylko samochody </p>
                 <input type='checkbox' onChange={this.handleOnlyCarsChange} value={searchOnlyCars} ></input>
                 <p> Typ silnika </p>
-                <select onChange={this.handleSelectEngineType}>
+                <select value={searchEngineType} onChange={this.handleSelectEngineType}>
+                    <option key={'all'} value={''}>All types</option>
                     {uniqueVehicleEngineTypes.map((engineType) =><option key={engineType} value={engineType}>{engineType}</option>)}
                 </select>
                 <button onClick={this.filterVehicles}>Wyszukaj</button>
