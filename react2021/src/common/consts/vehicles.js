@@ -59,6 +59,12 @@ const vehicles = [
     model: "Civic",
     engineType: "petrol",
   },
+  {
+    type: "car",
+    brand: "Toyota",
+    model: "Mirai",
+    engineType: "hydrogen",
+  },
 ];
 
 export default vehicles;

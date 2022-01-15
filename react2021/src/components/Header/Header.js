@@ -6,7 +6,8 @@ class Header extends React.Component {
         super(props);
         this.state = {
             searchPhrase: '',
-            searchOnlyCars: false
+            searchOnlyCars: false,
+            searchEngineType: ''
         }
     }
 
@@ -18,26 +19,45 @@ class Header extends React.Component {
         this.setState({ searchOnlyCars: event.target.checked })
     }
 
+    handleSelectEngineType = (event) => {
+        this.setState({ searchEngineType: event.target.value })
+    }
+
     filterVehicles = () => {
         const { vehicles } = this.props;
-        const { searchPhrase, searchOnlyCars } = this.state;
+        const { searchPhrase, searchOnlyCars, searchEngineType } = this.state;
 
         // odfiltrowanie zgodnych wyników
         let filteredVehicles = vehicles.filter((vehicle) => vehicle.brand.includes(searchPhrase));
         if (searchOnlyCars) {
-            filteredVehicles = filteredVehicles.filter((vehicle2) => vehicle2.type === 'car');
+            filteredVehicles = filteredVehicles.filter((vehicle) => vehicle.type === 'car');
+        }
+        if (searchEngineType) {
+            filteredVehicles = filteredVehicles.filter((vehicle) => vehicle.engineType === searchEngineType);
         }
         // przekazanie wyfiltrowanych pojazdów do komponentu rodzica (App)
         this.props.sendFilteredVehiclesToParentComponent(filteredVehicles);
     }
 
+    getUniqueVehicleEngineTypes = () => {
+        const { vehicles } = this.props;
+        const vehicleEngineList = vehicles.map((vehicle) => vehicle.engineType)
+        const uniqueVehicleEngineList = [...new Set(vehicleEngineList)];
+        return uniqueVehicleEngineList
+    }
+
     render() {
+        const uniqueVehicleEngineTypes = this.getUniqueVehicleEngineTypes();
         const { searchPhrase, searchOnlyCars } = this.state;
         return (
             <div className={styles.HeaderWrapper}>
                 <input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input>
                 <p> Tylko samochody </p>
                 <input type='checkbox' onChange={this.handleOnlyCarsChange} value={searchOnlyCars} ></input>
+                <p> Typ silnika </p>
+                <select onChange={this.handleSelectEngineType}>
+                    {uniqueVehicleEngineTypes.map((engineType) =><option key={engineType} value={engineType}>{engineType}</option>)}
+                </select>
                 <button onClick={this.filterVehicles}>Wyszukaj</button>
             </div>
           );
