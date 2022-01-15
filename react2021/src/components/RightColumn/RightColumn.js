@@ -4,7 +4,6 @@ import commonColumnsStyles from '../../common/styles/Columns.module.scss'
 
 function RightColumn() {
   return (
-    
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeader}>
         <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />

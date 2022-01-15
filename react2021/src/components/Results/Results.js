@@ -1,16 +1,14 @@
 import React from 'react';
-import logo from '../.././logo.svg';
-// import styles from './LeftColumn.module.scss';
+// import styles from './Results.module.scss';
 import commonColumnsStyles from '../../common/styles/Columns.module.scss'
 
-class LeftColumn extends React.Component {
+class Results extends React.Component {
     render() {
         return (
             <div className={commonColumnsStyles.App}>
               <header className={commonColumnsStyles.AppHeader}>
-                <img src={logo} className={commonColumnsStyles.AppLogo} alt="logo" />
                 <p>
-                  Left column
+                  Results
                 </p>
               </header>
             </div>
@@ -18,4 +16,4 @@ class LeftColumn extends React.Component {
     }
   }
 
-  export default LeftColumn;
+  export default Results;
