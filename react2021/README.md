@@ -47,15 +47,16 @@ Funkcjonalności dodatkowe (zalecane do zrobienia po zadaniu 7):
 
 # Zadanie 4 - Filtr po typie pojazdu
 Do filtrów w komponencie Header dodaj nowy filtr "Tylko samochody", który będzie inputem typu checkbox. Potrzebny będzie również nowy stan "searchOnlyCars", który będzie przyjmował wartości true / false
-  ```
-    <p> Tylko samochody </p>
-    <input type='checkbox' onChange={this.handleOnlyCarsChange} value={this.state.searchOnlyCars} ></input>
-  ```
+```
+  <p> Tylko samochody </p>
+  <input type='checkbox' onChange={this.handleOnlyCarsChange} value={this.state.searchOnlyCars} ></input>
+```
 Zaznaczenie tego pola i wciśnięcie "Szukaj" powinno filtrować tylko samochody. Filtr ten powinien "współpracować" z filtrem z poprzedniego zadania.
 
 # Zadanie 5 - Filtr po typie silnika
 Do filtrów w komponencie Header dodaj nowy filtr "Typ silnika", który będzie dropdownem z wszystkimi dostępnymi opcjami typów silnika. Powinieneś zatem przeszukać wszystkie pojazdy (listę obiektów) oraz na jej podstawie utworzyć unikatową listę typów silników (nazwijmy je "uniqueVehicleEngineTypes").
-Dropdown reprezentuje znacznik <select> a poszczególną opcję do wyboru <option>, zatem lista będzie wyglądała jak poniżej
+Dropdown reprezentuje znacznik < select > a poszczególną opcję do wyboru < option >, zatem lista będzie wyglądała jak poniżej.
+
 ```
 <select onChange={...}>
     {uniqueVehicleEngineTypes.map((engineType) =><option key={engineType} value={engineType}>{engineType}</option>)}
