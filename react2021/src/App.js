@@ -8,25 +8,38 @@ import produkty from "./common/consts/produkty";
 
 
 
-  const koszykToDisplay =  [{
+  const zakupy =  [{
     id: 0,
     nazwa: "mleko",
-    podkreslony: true
+    podkreslony: false
   },
   {
     id: 1,
     nazwa: "sałata",
-    podkreslony: true
+    podkreslony: false
   }];
+
+
+
 
 function App() {
   const [resultsToDisplay, setResultsToDisplay] = useState(produkty);
+  const [koszykToDisplay, setZakupyToDisplay] = useState(zakupy);
 
-    //console.log(koszykToDisplay);
-
-    const sendDataToParent = (index) => { // the callback. Use a better name
-      console.log(index);
-    };
+  const sendDataToParent = (produkt) => { // the callback. Use a better name!
+    const iloscWKoszyku = koszykToDisplay.length
+    let maxid = 0;
+    for(let i = 0; i < iloscWKoszyku; i++){
+      const a = koszykToDisplay[i].id;
+      console.log('a: ' + a);
+      if(a > maxid) maxid= a + 1; 
+    }
+      //console.log(produkt.nazwa);
+      koszykToDisplay.push({id: maxid, nazwa: produkt.nazwa, podkreslony: false});
+      console.log(koszykToDisplay);
+      setZakupyToDisplay(koszykToDisplay);
+      
+  };
 
 
   return (

@@ -4,7 +4,7 @@ import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 class ProductsList extends React.Component{
 
   produktClick(produkt){
-    console.log(produkt.nazwa)
+    //console.log(produkt.nazwa)
     //this.setState({data: 'nannsd'});
     //sendDataToParent(produkt.nazwa);
   }
@@ -16,7 +16,7 @@ class ProductsList extends React.Component{
         <header className={commonColumnsStyles.AppHeader}>
           <p><b>Products list</b></p>
           <ul className={commonColumnsStyles.AppList}>
-            {produktyToDisplay.map((produkt) => <li onClick={() =>this.produktClick(produkt)} key={produkt.nazwa}> {`${produkt.nazwa}`} </li>)}   
+            {produktyToDisplay.map((produkt) => <li onClick={() => {this.props.sendDataToParent(produkt);}}  key={produkt.nazwa}> {`${produkt.nazwa}`} </li>)}   
           </ul>
         </header>
       </div>
