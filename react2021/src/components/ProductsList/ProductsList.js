@@ -3,12 +3,6 @@ import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 
 class ProductsList extends React.Component{
 
-  produktClick(produkt){
-    //console.log(produkt.nazwa)
-    //this.setState({data: 'nannsd'});
-    //sendDataToParent(produkt.nazwa);
-  }
-
   render() {
     const { produktyToDisplay } = this.props;
     return (

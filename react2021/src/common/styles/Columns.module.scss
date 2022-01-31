@@ -1,4 +1,5 @@
 $color-red: red;
+$color-yellow: rgb(255, 208, 0);
 
 .App {
   text-align: center;
@@ -26,6 +27,18 @@ $color-red: red;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: $color-red;
+  width: 100%;
+}
+
+.AppHeaderR {
+  background-color: #282c34;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: $color-yellow;
   width: 100%;
 }
 

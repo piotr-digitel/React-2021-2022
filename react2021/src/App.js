@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import ProductsList from './components/ProductsList/ProductsList';
 import ShopingList from './components/ShopingList/ShopingList';
 import AddProducts from './components/AddProducts/AddProducts';
@@ -16,32 +16,30 @@ import produkty from "./common/consts/produkty";
   {
     id: 1,
     nazwa: "sałata",
-    podkreslony: false
+    podkreslony: true
   }];
 
-
-
+  
 
 function App() {
   const [resultsToDisplay, setResultsToDisplay] = useState(produkty);
   const [koszykToDisplay, setZakupyToDisplay] = useState(zakupy);
 
   const sendDataToParent = (produkt) => { // the callback. Use a better name!
-    const iloscWKoszyku = koszykToDisplay.length
+    let iloscWKoszyku = koszykToDisplay.length
     let maxid = 0;
     for(let i = 0; i < iloscWKoszyku; i++){
       const a = koszykToDisplay[i].id;
-      console.log('a: ' + a);
-      if(a > maxid) maxid= a + 1; 
+      if(a >= maxid) maxid= a + 1; 
     }
-      //console.log(produkt.nazwa);
-      koszykToDisplay.push({id: maxid, nazwa: produkt.nazwa, podkreslony: false});
-      console.log(koszykToDisplay);
-      setZakupyToDisplay(koszykToDisplay);
-      
+    koszykToDisplay.push({id: maxid, nazwa: produkt.nazwa, podkreslony: false});
+    console.log(koszykToDisplay);
+    setZakupyToDisplay(koszykToDisplay);
+
   };
 
 
+ 
   return (
     <div className={styles.appWrapper}>
       <AddProducts />
