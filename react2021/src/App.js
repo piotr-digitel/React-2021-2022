@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState } from 'react';
 import ProductsList from './components/ProductsList/ProductsList';
 import ShopingList from './components/ShopingList/ShopingList';
 import AddProducts from './components/AddProducts/AddProducts';
@@ -24,6 +24,7 @@ import produkty from "./common/consts/produkty";
 function App() {
   const [resultsToDisplay, setResultsToDisplay] = useState(produkty);
   const [koszykToDisplay, setZakupyToDisplay] = useState(zakupy);
+  const [rerender, setRerender] = useState(false);
 
   const sendDataToParent = (produkt) => { // the callback. Use a better name!
     let iloscWKoszyku = koszykToDisplay.length
@@ -35,15 +36,19 @@ function App() {
     koszykToDisplay.push({id: maxid, nazwa: produkt.nazwa, podkreslony: false});
     console.log(koszykToDisplay);
     setZakupyToDisplay(koszykToDisplay);
-
+    setRerender(!rerender);
   };
 
+  const sendNewProductToParent = (produkt) => {
+    produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
+    setZakupyToDisplay(koszykToDisplay);
+    setRerender(!rerender);
+  };
 
- 
   return (
     <div className={styles.appWrapper}>
-      <AddProducts />
-      <ProductsFilters />
+      <AddProducts  sendNewProductToParent={sendNewProductToParent} />
+      <ProductsFilters produkty={produkty} sendFilteredProductsToParentComponent={setResultsToDisplay} />
       <div className={styles.columnsWrapper}>
         <ProductsList produktyToDisplay={resultsToDisplay} sendDataToParent={sendDataToParent}/>
         <ShopingList zakupyToDisplay={koszykToDisplay}/>

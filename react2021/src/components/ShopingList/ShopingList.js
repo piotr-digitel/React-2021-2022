@@ -1,22 +1,19 @@
-import React, { useState, useEffect, setState } from 'react';
+import React, { useState } from 'react';
 import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 
 
 
 function ShopingList({zakupyToDisplay}) {
 
-  const [ zakupToDisplay, setValue ] = useState(zakupyToDisplay);
+  const [ zakupToDisplay ] = useState(zakupyToDisplay);
+  const [ rerender, setRerender] = useState(false);
 
   //function zakupClick(zakup){
   const zakupClick = (zakup, koszyk) => {
-
-   console.log(zakup.nazwa +' id: ' + zakup.id);
-   console.log(koszyk);
-    // this.setState({zakup: ''});
-
+  //   console.log(zakup.nazwa +' id: ' + zakup.id);
+  // console.log(koszyk);
     koszyk.splice(zakup.id, 1);
-     
-    //setValue(zakup);
+    setRerender(!rerender);
   };
 
   const zakupClick2 = (zakup, e) => {
@@ -27,13 +24,14 @@ function ShopingList({zakupyToDisplay}) {
     }else{
       zakup.podkreslony=true;
     };
+    setRerender(!rerender);
   }
 
  
   return (
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeaderR}>
-        <b>Shoping List</b>
+        <b>Lista zakupów</b>
         <ul className={commonColumnsStyles.AppList}>
           {zakupToDisplay.map((zakup) => <li onClick={()=>zakupClick(zakup, zakupToDisplay)} onContextMenu={(e) =>zakupClick2(zakup, e)} key={zakup.id}    
           
