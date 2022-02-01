@@ -41,7 +41,7 @@ function App() {
 
   const sendNewProductToParent = (produkt) => {
     produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
-    setZakupyToDisplay(koszykToDisplay);
+    setResultsToDisplay(produkty);
     setRerender(!rerender);
   };
 
