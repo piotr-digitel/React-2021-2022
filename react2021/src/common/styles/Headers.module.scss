@@ -4,4 +4,54 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fae484;
 }
+
+.WrapperAdd {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7c900;
+    
+}
+
+.HeaderItems {
+    margin: 20px;
+}
+
+.button {
+    background-color: #d4ad00; /*yellow */
+    border: 2px solid #d4ad00;
+    color: white;
+    padding: 12px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .button:hover {
+    border: 2px solid #282c34;
+    color: #282c34;
+  }
+
+  .CustomSelect {
+    background-color: #d4ad00; /*yellow */
+    border: 2px solid #d4ad00;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
+  }
+
+  .CustomSelect:hover {
+    border: 2px solid #282c34;
+    color: #282c34;
+  }
+  
+

@@ -7,19 +7,7 @@ import styles from './App.module.scss';
 import produkty from "./common/consts/produkty";
 
 
-
-  const zakupy =  [{
-    id: 0,
-    nazwa: "mleko",
-    podkreslony: false
-  },
-  {
-    id: 1,
-    nazwa: "sałata",
-    podkreslony: true
-  }];
-
-  
+let zakupy =  [];
 
 function App() {
   const [resultsToDisplay, setResultsToDisplay] = useState(produkty);
@@ -34,15 +22,24 @@ function App() {
       if(a >= maxid) maxid= a + 1; 
     }
     koszykToDisplay.push({id: maxid, nazwa: produkt.nazwa, podkreslony: false});
-    console.log(koszykToDisplay);
+    //console.log(koszykToDisplay);
     setZakupyToDisplay(koszykToDisplay);
     setRerender(!rerender);
   };
 
   const sendNewProductToParent = (produkt) => {
-    produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
+    //validacja nowego produktu, nie może mieć mniej niż 2 litery, jak nie ma kategorii to dajemy 'inna'
+    if(produkt.newProduct.length<3){
+      alert('Nazwa produktu musi mieć min. 3 znaki.')
+    }else{
+      if(produkt.newCategory.length<2){
+        produkty.push({nazwa: produkt.newProduct, kategoria: 'inne', produktSpozywczy: produkt.isFood});
+      }else{
+        produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
+      }  
     setResultsToDisplay(produkty);
     setRerender(!rerender);
+    }
   };
 
   return (

@@ -1,43 +1,41 @@
 import React, { useState } from 'react';
 import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 
+function ShopingList({zakupyToDisplay}) {     //dostajemy listę zakupów od rodzica
 
+  const [ zakupToDisplay ] = useState(zakupyToDisplay); //zapamiętujemy stan zakupów 
+  const [ rerender, setRerender] = useState(false);     //do przerenderowania componentu w dowolnej chwili(zdarzenia)
 
-function ShopingList({zakupyToDisplay}) {
-
-  const [ zakupToDisplay ] = useState(zakupyToDisplay);
-  const [ rerender, setRerender] = useState(false);
-
-  //function zakupClick(zakup){
+  //************************ usuwanie zakupu po kliknięciu na lewy button myszy ************************
   const zakupClick = (zakup, koszyk) => {
-  //   console.log(zakup.nazwa +' id: ' + zakup.id);
-  // console.log(koszyk);
-    koszyk.splice(zakup.id, 1);
-    setRerender(!rerender);
+    let indexOfRemove = -1;                             //szukamy indexu obiektu do usunięcia w koszyku
+    for(let i=0; i<Object.keys(koszyk).length; i++){    //przemiatamy cały koszyk
+      if(koszyk[i].id===zakup.id) indexOfRemove = i     //jeżeli id zakupu jest równe is towaru z koszyku to mamy index
+    }
+    if (indexOfRemove > -1) {
+      koszyk.splice(indexOfRemove, 1); // jeśli znaleziono index to usuwamy produkt z koszyka
+    }
+    setRerender(!rerender);   //przerenderujemy component
   };
 
+  //************************ zmiana od prawego buttona myszy - przekreślony lub nie ************************
   const zakupClick2 = (zakup, e) => {
     e.preventDefault();
-    //console.log(zakup.id);
-    if(zakup.podkreslony === true){
-      zakup.podkreslony=false;
-    }else{
-      zakup.podkreslony=true;
-    };
-    setRerender(!rerender);
-  }
+    zakup.podkreslony = !zakup.podkreslony;    //toggle zakup.podkreslony
+    setRerender(!rerender);  //przerenderujemy component
+  };
 
- 
-  return (
+   return (
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeaderR}>
-        <b>Lista zakupów</b>
+        <b><u>Lista zakupów:</u></b>
         <ul className={commonColumnsStyles.AppList}>
           {zakupToDisplay.map((zakup) => <li onClick={()=>zakupClick(zakup, zakupToDisplay)} onContextMenu={(e) =>zakupClick2(zakup, e)} key={zakup.id}    
           
-          style={{"textDecoration": `${zakup.podkreslony === true ? "line-through" : "auto" }`}}
+          style={{"textDecoration": `${zakup.podkreslony === true ? "line-through" : "auto"}`}}
           
-          > {`${zakup.nazwa}`} </li>)}  
+          
+          >{`${zakup.nazwa}`}</li>)}  
         </ul>
       </header>
     </div>

@@ -4,13 +4,14 @@ import styles from '../../common/styles/Headers.module.scss';
 class AddProducts extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {                  //konstrukcja stanu z nowym produktem
             newProduct: '',
             isFood: false,
             newCategory: ''
         }
     }
 
+    //zdarzenia powodujące zmianę stanu i wpisywanie wartości w kontrolki
     handleProductChange = (event) => {
         this.setState({ newProduct: event.target.value });
     }
@@ -22,29 +23,23 @@ class AddProducts extends React.Component {
     handleOnlyFoodChange = (event) => {
         this.setState({ isFood: event.target.checked });
     }
-
+    
+    //zdarzenie od button [dodaj] - wywołuje callback u rodzica aby dodać produkt do listy
     handleAddProduct = () => {
         const { newProduct, isFood, newCategory } = this.state;
-       // console.log(newProduct);
-      //  console.log(newCategory);
-       // console.log(isFood);
         // przekazanie nowego produktu do komponentu rodzica (App)
         this.props.sendNewProductToParent({newProduct, newCategory, isFood});
     }
 
-
-
     render() {
-        const { newProduct, isFood, newCategory } = this.state;
+        const { newProduct, isFood, newCategory } = this.state;  //odczyt stanu zmiennych
         return (
-            <div className={styles.Wrapper}>
-                Nazwa:
-                <input className={styles.HeaderItems} value={newProduct} onChange={this.handleProductChange}></input>
-                Kategoria:
-                <input className={styles.HeaderItems} value={newCategory} onChange={this.handleCategoryChange}></input>
-                <p> Produkt spożywczy: </p>
-                <input type='checkbox' onChange={this.handleOnlyFoodChange} value={isFood} ></input>
-                <button className={styles.HeaderItems} onClick={this.handleAddProduct}>Dodaj</button>
+            <div className={styles.WrapperAdd}>
+                <h3 className={styles.HeaderItems}>Dodawanie nowego produktu:</h3>
+                <p className={styles.HeaderItems}>Nazwa:<input value={newProduct} onChange={this.handleProductChange}></input></p>
+                <p className={styles.HeaderItems}>Kategoria:<input value={newCategory} onChange={this.handleCategoryChange}></input></p>
+                <p className={styles.HeaderItems}> Produkt spożywczy:<input type='checkbox' onChange={this.handleOnlyFoodChange} value={isFood} ></input></p>
+                <button className={styles.button} onClick={this.handleAddProduct}>Dodaj</button>
             </div>
           );
     }

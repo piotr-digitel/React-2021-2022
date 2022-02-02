@@ -28,7 +28,7 @@ class ProductsFilters extends React.Component {
         const { searchPhrase, searchOnlyFood, searchCategory } = this.state;
 
         // odfiltrowanie zgodnych wyników
-        let filteredProdukty = produkty.filter((produkt) => produkt.nazwa.includes(searchPhrase.toLowerCase()));
+        let filteredProdukty = produkty.filter((produkt) => produkt.nazwa.toLowerCase().includes(searchPhrase.toLowerCase()));
         if (searchOnlyFood) {
             filteredProdukty = filteredProdukty.filter((produkt) => produkt.produktSpozywczy === true);
         }
@@ -62,17 +62,15 @@ class ProductsFilters extends React.Component {
         const { searchPhrase, searchOnlyFood, searchCatType } = this.state;
         return (
             <div className={styles.Wrapper}>
-                Szukaj po nazwie: 
-                <input className={styles.HeaderItems} value={searchPhrase} onChange={this.handleSearchPhraseChange}></input>
-                <p> Tylko produkty spożywcze: </p>
-                <input type='checkbox' onChange={this.handleOnlyFoodChange} value={searchOnlyFood} ></input>
-                <p className={styles.HeaderItems}> Kategorie: </p>
+                <h3 className={styles.HeaderItems}>Filtry:</h3>
+                <p className={styles.HeaderItems}>Szukaj po nazwie:<input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input></p>
+                <p className={styles.HeaderItems}>Tylko produkty spożywcze:<input type='checkbox' onChange={this.handleOnlyFoodChange} value={searchOnlyFood} ></input></p>
+                <p className={styles.CustomSelect}>Kategorie: 
                 <select value={searchCatType} onChange={this.handleSelectCategory}>
                     <option key={'all'} value={''}>Wszystkie</option>
                     {uniqueCategories.map((kategoria) =><option key={kategoria} value={kategoria}>{kategoria}</option>)}
-                </select>
-                {/* <button onClick={this.filterVehicles}>Wyszukaj</button> */}
-                <button className={styles.HeaderItems} onClick={this.handleResetFilters}>Zresetuj filtry</button>
+                </select></p>
+                <button className={styles.button} onClick={this.handleResetFilters}>Zresetuj filtry</button>
             </div>
           );
     }
