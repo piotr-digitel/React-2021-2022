@@ -1,5 +1,5 @@
 $color-red: #df7e00;
-$color-yellow: #f7c900;
+$color-yellow: #03002b;
 
 .App {
   text-align: center;
@@ -40,6 +40,9 @@ $color-yellow: #f7c900;
   font-size: calc(10px + 2vmin);
   color: $color-yellow;
   width: 100%;
+  background-image: url('../img/kartka.jpg');
+  background-position: center;
+  background-repeat: repeat-y;
 }
 
 @keyframes App-logo-spin {
@@ -55,4 +58,17 @@ $color-yellow: #f7c900;
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+
+
+.AppListProd {
+  border-left: 5px solid #df7e00;
+  //background-color: #f1f1f1;
+  padding: 10px 20px; 
+  list-style-type: none;
+}
+
+.AppListProd li:hover {
+ color: #fff0dd
 }
