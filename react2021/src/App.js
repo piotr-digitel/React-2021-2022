@@ -13,7 +13,8 @@ function App() {
   const [resultsToDisplay, setResultsToDisplay] = useState(produkty);  //dostępne produkty
   const [koszykToDisplay, setZakupyToDisplay] = useState(zakupy);      //produkty w koszyku
   const [rerender, setRerender] = useState(false);                     //zmusza do przerenderowania
-  
+  const [clearFilter, setClearFilter] = useState(false);               //wysyła do child filtra info że ma się zrestartować po dodaniu nowego elementu
+
   //dodawanie produktu do koszyka - zdarzenie przychodzi od kliknięcia w componencie ProductList
   const sendDataToParent = (produkt) => { // the callback. Use a better name! - 
     //Szukamy największego id w produktach w koszyku i dodajemy 1
@@ -31,24 +32,34 @@ function App() {
 
   //dodawanie nowego produktu do listy dostępnych - zdarzenie od kliknięcia w componencie AddProducts
   const sendNewProductToParent = (produkt) => {
-    //validacja nowego produktu, nie może mieć mniej niż 2 litery, jak nie ma kategorii to dajemy 'inne'
-    if(produkt.newProduct.length<3){
-      alert('Nazwa produktu musi mieć min. 3 znaki.')
+    //validacja nowego produktu, czy już takiego nie ma na liście
+    let nameExists = false;
+    for(let i=0; i<Object.keys(produkty).length; i++){                 //przemiatamy wszystkie produkty
+      if(produkty[i].nazwa===produkt.newProduct) nameExists = true     //i sprawdzamy czy już takiego nie ma
+    }
+    if(nameExists){
+      alert('Dodanie nieudane\nTaki produkt już jest na liście')
     }else{
-      if(produkt.newCategory.length<2){
-        produkty.push({nazwa: produkt.newProduct, kategoria: 'inne', produktSpozywczy: produkt.isFood});
+      //validacja nowego produktu, nie może mieć mniej niż 2 litery, jak nie ma kategorii to dajemy 'inne'
+      if(produkt.newProduct.length<3){
+        alert('Dodanie nieudane\nNazwa produktu musi mieć min. 3 znaki.')
       }else{
-        produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
-      }  
-    setResultsToDisplay(produkty);  //upgrade stejta
-    setRerender(!rerender);  //przerenderujemy
+        if(produkt.newCategory.length<2){
+          produkty.push({nazwa: produkt.newProduct, kategoria: 'inne', produktSpozywczy: produkt.isFood});
+        }else{
+          produkty.push({nazwa: produkt.newProduct, kategoria: produkt.newCategory, produktSpozywczy: produkt.isFood});
+        }  
+        setClearFilter(true);           //po dodaniu nowego zresetuj filtr w componencie filter
+        setResultsToDisplay(produkty);  //upgrade stejta
+        setRerender(!rerender);         //przerenderujemy
+      }
     }
   };
 
   return (
     <div className={styles.appWrapper}>
       <AddProducts  sendNewProductToParent={sendNewProductToParent} />
-      <ProductsFilters produkty={produkty} sendFilteredProductsToParentComponent={setResultsToDisplay} />
+      <ProductsFilters clearFilter={clearFilter} produkty={produkty} sendFilteredProductsToParentComponent={setResultsToDisplay} sendNoFilter={setClearFilter}/>
       <div className={styles.columnsWrapper}>
         <ProductsList produktyToDisplay={resultsToDisplay} sendDataToParent={sendDataToParent}/>
         <ShopingList zakupyToDisplay={koszykToDisplay}/>

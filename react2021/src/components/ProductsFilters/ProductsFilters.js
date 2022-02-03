@@ -8,8 +8,15 @@ class ProductsFilters extends React.Component {
             searchPhrase: '',
             searchOnlyFood: false,
             searchCategory: '',
-        }
+         }
     }
+
+//odbiera od parenta informację po dodaniu elementu, że trzeba zresetować filtr
+    componentDidUpdate() {
+        const { clearFilter } = this.props;
+        if(clearFilter) this.handleResetFilters();
+        return false;
+      }
 
     //zdarzenia powodujące zmianę stanu i wpisywanie wartości w kontrolki
     handleSearchPhraseChange = (event) => {
@@ -24,7 +31,7 @@ class ProductsFilters extends React.Component {
         this.setState({ searchCategory: event.target.value }, () => this.filterProdukty());
     }
 
-    //wykonanie filtrowania z callbacku zdarzeń
+    //wykonanie filtrowania ze zdarzeń
     filterProdukty = () => {
         const { produkty } = this.props;
         const { searchPhrase, searchOnlyFood, searchCategory } = this.state;
@@ -52,6 +59,7 @@ class ProductsFilters extends React.Component {
             const selectById = document.getElementById("select");  //żeby przy resecie filtrów czyściło pole select - wypisuje [Wszystkie]
             selectById.value = '';
             this.filterProdukty();  //wykonanie filtrowania dla pustego filtra - aby się przerenderowało i wświetliło wszystko
+            this.props.sendNoFilter(false);  //kiedy filtr się zrestartuje, przekazuje do parenta false, aby się nie zapetliło
         });
     }
 
