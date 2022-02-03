@@ -31,11 +31,10 @@ function ShopingList({zakupyToDisplay}) {     //dostajemy listę zakupów od rod
         <b><u>Lista zakupów:</u></b>
         <ul className={commonColumnsStyles.AppList}>
           {zakupToDisplay.map((zakup) => <li onClick={()=>zakupClick(zakup, zakupToDisplay)} onContextMenu={(e) =>zakupClick2(zakup, e)} key={zakup.id}    
-          
-          style={{"textDecoration": `${zakup.podkreslony === true ? "line-through" : "auto"}`}}
-          
-          
-          >{`${zakup.nazwa}`}</li>)}  
+          style={
+            {"textDecoration": `${zakup.podkreslony === true ? "line-through" : "auto"}`,
+            "textDecorationColor": `${zakup.podkreslony === true ? "red" : "auto"}`}
+          }>{`${zakup.nazwa}`}</li>)}  
         </ul>
       </header>
     </div>
