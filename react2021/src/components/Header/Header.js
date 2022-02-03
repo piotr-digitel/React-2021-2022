@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import Modal from "../../components/Modal/Modal";
 
 class Header extends React.Component {
     constructor(props) {
@@ -7,8 +8,10 @@ class Header extends React.Component {
         this.state = {
             searchPhrase: '',
             searchOnlyCars: false,
-            searchEngineType: ''
+            searchEngineType: '',
+            show: false
         }
+
     }
 
     handleSearchPhraseChange = (event) => {
@@ -56,23 +59,40 @@ class Header extends React.Component {
         return uniqueVehicleEngineList
     }
 
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+
     render() {
         const uniqueVehicleEngineTypes = this.getUniqueVehicleEngineTypes();
         const { searchPhrase, searchOnlyCars, searchEngineType } = this.state;
         return (
             <div className={styles.HeaderWrapper}>
-                <input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input>
+
+                <Modal show={this.state.show} handleClose={this.hideModal}>
+
+                
+                </Modal>
+                <button type="button" onClick={this.showModal}>Help</button>
+
+                <input className={styles.HeaderItems} value={searchPhrase} onChange={this.handleSearchPhraseChange}></input>
                 <p> Tylko samochody </p>
                 <input type='checkbox' onChange={this.handleOnlyCarsChange} value={searchOnlyCars} ></input>
-                <p> Typ silnika </p>
+                <p className={styles.HeaderItems}> Typ silnika </p>
                 <select value={searchEngineType} onChange={this.handleSelectEngineType}>
                     <option key={'all'} value={''}>All types</option>
                     {uniqueVehicleEngineTypes.map((engineType) =><option key={engineType} value={engineType}>{engineType}</option>)}
                 </select>
                 {/* <button onClick={this.filterVehicles}>Wyszukaj</button> */}
-                <button onClick={this.handleResetFilters}>Zresetuj filtry</button>
-            </div>
-          );
+                <button className={styles.HeaderItems} onClick={this.handleResetFilters}>Zresetuj filtry</button>
+            
+
+        </div>
+        )
     }
   }
 

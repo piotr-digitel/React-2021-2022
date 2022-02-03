@@ -8,9 +8,9 @@ class Results extends React.Component {
         return (
             <div className={commonColumnsStyles.App}>
               <header className={commonColumnsStyles.AppHeader}>
-                <ui>
-                  {vehiclesToDisplay.map((vehicle) => <li key={vehicle.model}>{`${vehicle.brand} ${vehicle.model}`}</li>)}
-                </ui>
+                <ul className={commonColumnsStyles.AppList}>
+                  {vehiclesToDisplay.map((vehicle) => <li key={vehicle.model}> {`${vehicle.brand} ${vehicle.model}`} </li>)}
+                </ul>
               </header>
             </div>
           );
