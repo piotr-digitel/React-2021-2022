@@ -4,13 +4,14 @@ import styles from '../../common/styles/Headers.module.scss';
 class ProductsFilters extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {                    //konstrukcja stanu z filtrem
             searchPhrase: '',
             searchOnlyFood: false,
-            searchCategory: ''
+            searchCategory: '',
         }
     }
 
+    //zdarzenia powodujące zmianę stanu i wpisywanie wartości w kontrolki
     handleSearchPhraseChange = (event) => {
         this.setState({ searchPhrase: event.target.value }, () => this.filterProdukty());
     }
@@ -23,32 +24,38 @@ class ProductsFilters extends React.Component {
         this.setState({ searchCategory: event.target.value }, () => this.filterProdukty());
     }
 
+    //wykonanie filtrowania z callbacku zdarzeń
     filterProdukty = () => {
         const { produkty } = this.props;
         const { searchPhrase, searchOnlyFood, searchCategory } = this.state;
-
-        // odfiltrowanie zgodnych wyników
+        // odfiltrowanie zgodnych wyników - sprawdza zmieniając wszystko do małych liter - wielkość liter nie ma znaczenia
         let filteredProdukty = produkty.filter((produkt) => produkt.nazwa.toLowerCase().includes(searchPhrase.toLowerCase()));
         if (searchOnlyFood) {
-            filteredProdukty = filteredProdukty.filter((produkt) => produkt.produktSpozywczy === true);
+            filteredProdukty = filteredProdukty.filter((produkt) => produkt.produktSpozywczy === true);  //tylko spożywcze
         }
         if (searchCategory) {
-            filteredProdukty = filteredProdukty.filter((produkt) => produkt.kategoria === searchCategory);
+            filteredProdukty = filteredProdukty.filter((produkt) => produkt.kategoria === searchCategory);   //po kategoriach
         }
-        // przekazanie wyfiltrowanych pojazdów do komponentu rodzica (App)
+        // przekazanie wyfiltrowanych produktów do komponentu rodzica (App)
         this.props.sendFilteredProductsToParentComponent(filteredProdukty);
     }
 
+    //zdarzenie do resetowania filtrów
     handleResetFilters = () => {
-        this.setState({
+        this.setState({               //zapamiętanie stanu pustego filtru
             searchPhrase: '',
             searchOnlyFood: false,
-            searchCategory: ''
+            searchCategory: '',
         },() => {
-            this.filterProdukty();
+            const checkboxById = document.getElementById("checkbox");   //żeby przy resecie filtrów odznaczało checkboxa [tylko spożywcze]
+            checkboxById.checked = false;
+            const selectById = document.getElementById("select");  //żeby przy resecie filtrów czyściło pole select - wypisuje [Wszystkie]
+            selectById.value = '';
+            this.filterProdukty();  //wykonanie filtrowania dla pustego filtra - aby się przerenderowało i wświetliło wszystko
         });
     }
 
+    //do filtrowania po kategoriach tworzy arraya z unikalnymi kategoriami 
     getUniqueCategories = () => {
         const { produkty } = this.props;
         const CategoryList = produkty.map((produkt) => produkt.kategoria)
@@ -56,17 +63,16 @@ class ProductsFilters extends React.Component {
         return uniqueCategoryList
     }
 
-
     render() {
-        const uniqueCategories = this.getUniqueCategories();
-        const { searchPhrase, searchOnlyFood, searchCatType } = this.state;
+        const uniqueCategories = this.getUniqueCategories();  //odczyt unikalnych kategorii
+        const { searchPhrase, searchOnlyFood, searchCatType } = this.state;  //odczyt stanu filtra - aby wypisać wprowadzone wartości
         return (
             <div className={styles.Wrapper}>
                 <h3 className={styles.HeaderItems}>Filtry:</h3>
                 <p className={styles.HeaderItems}>Szukaj po nazwie:<input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input></p>
-                <p className={styles.HeaderItems}>Tylko produkty spożywcze:<input type='checkbox' onChange={this.handleOnlyFoodChange} value={searchOnlyFood} ></input></p>
+                <p className={styles.HeaderItems}>Tylko produkty spożywcze:<input type='checkbox' id="checkbox" onChange={this.handleOnlyFoodChange} value={searchOnlyFood} ></input></p>
                 <p className={styles.CustomSelect}>Kategorie: 
-                <select value={searchCatType} onChange={this.handleSelectCategory}>
+                <select value={searchCatType} onChange={this.handleSelectCategory} id="select">
                     <option key={'all'} value={''}>Wszystkie</option>
                     {uniqueCategories.map((kategoria) =><option key={kategoria} value={kategoria}>{kategoria}</option>)}
                 </select></p>
