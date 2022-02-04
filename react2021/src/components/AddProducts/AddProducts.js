@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../common/styles/Headers.module.scss';
+import Modal from "../../components/Modal/Modal";
 
 class AddProducts extends React.Component {
     constructor(props) {
@@ -7,7 +8,8 @@ class AddProducts extends React.Component {
         this.state = {                  //konstrukcja stanu z nowym produktem
             newProduct: '',
             isFood: false,
-            newCategory: ''
+            newCategory: '',
+            show: true
         }
     }
 
@@ -31,6 +33,14 @@ class AddProducts extends React.Component {
         this.props.sendNewProductToParent({newProduct, newCategory, isFood});
     }
 
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+
     render() {
         const { newProduct, isFood, newCategory } = this.state;  //odczyt stanu zmiennych
         return (
@@ -40,6 +50,8 @@ class AddProducts extends React.Component {
                 <p className={styles.HeaderItems}>Kategoria:<input value={newCategory} onChange={this.handleCategoryChange}></input></p>
                 <p className={styles.HeaderItems}> Produkt spożywczy:<input type='checkbox' onChange={this.handleOnlyFoodChange} value={isFood} ></input></p>
                 <button className={styles.button} onClick={this.handleAddProduct}>Dodaj</button>
+                <Modal show={this.state.show} handleClose={this.hideModal}></Modal>
+                <button className={styles.button} type="button" onClick={this.showModal}>Pomoc</button>
             </div>
           );
     }
