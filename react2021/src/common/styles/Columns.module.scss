@@ -24,10 +24,11 @@ $color-yellow: #03002b;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
   font-size: calc(10px + 2vmin);
   color: $color-red;
   width: 100%;
+  padding: 5% 0 0 0;
 }
 
 .AppHeaderR {
@@ -36,13 +37,14 @@ $color-yellow: #03002b;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
   font-size: calc(10px + 2vmin);
   color: $color-yellow;
   width: 100%;
   background-image: url('../img/kartka.jpg');
   background-position: center;
   background-repeat: repeat-y;
+  padding: 5% 0 0 0;
 }
 
 @keyframes App-logo-spin {
