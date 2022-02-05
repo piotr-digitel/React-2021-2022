@@ -3,6 +3,7 @@ import ProductsList from './components/ProductsList/ProductsList';
 import ShopingList from './components/ShopingList/ShopingList';
 import AddProducts from './components/AddProducts/AddProducts';
 import ProductsFilters from './components/ProductsFilters/ProductsFilters';
+import Footer from './components/Footer/Footer';
 import styles from './App.module.scss';
 import produkty from "./common/consts/produkty";  // stąd pochodzą dostępne produkty
 
@@ -64,6 +65,7 @@ function App() {
         <ProductsList produktyToDisplay={resultsToDisplay} sendDataToParent={sendDataToParent}/>
         <ShopingList zakupyToDisplay={koszykToDisplay}/>
       </div>
+      <Footer/>
     </ div>
   );
 }

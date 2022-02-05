@@ -26,8 +26,11 @@ $color-yellow: #03002b;
   align-items: center;
   //justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: $color-red;
+  color: #282c34;
   width: 100%;
+  background-image: url('../img/sklep.jpg');
+ // background-position: center;
+  background-size: cover;
   padding: 5% 0 0 0;
 }
 
@@ -66,11 +69,17 @@ $color-yellow: #03002b;
 
 .AppListProd {
   border-left: 5px solid #df7e00;
-  //background-color: #f1f1f1;
-  padding: 10px 20px; 
+  padding: 10px 30px; 
   list-style-type: none;
 }
 
 .AppListProd li:hover {
- color: #fff0dd
+ color: #df7e00
+}
+
+
+
+.ListL {
+  padding: 6%;
+  background-color: #f1f1f1c2;
 }

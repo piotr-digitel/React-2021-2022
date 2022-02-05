@@ -8,10 +8,12 @@ class ProductsList extends React.Component{
     return (
       <div className={commonColumnsStyles.App}>
         <header className={commonColumnsStyles.AppHeader}>
+        <p className={commonColumnsStyles.ListL}>
           <b><u>Lista produktów:</u></b>
           <ul className={commonColumnsStyles.AppListProd}>
             {produktyToDisplay.map((produkt) => <li onClick={() => {this.props.sendDataToParent(produkt);}}  key={produkt.nazwa}> {`${produkt.nazwa}`} </li>)}   
           </ul>
+        </p>
         </header>
       </div>
     );
