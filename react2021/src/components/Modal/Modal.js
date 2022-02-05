@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Modal.module.scss";
+import logo from '../../common/img/favicon.ico';
 
 const Modal = ({ handleClose, show }) => {
   const showHideClassName = show ? {display: 'block'} : {display: 'none'};
@@ -7,7 +8,10 @@ const Modal = ({ handleClose, show }) => {
   return (
     <div className={style.modal} style={showHideClassName}  onClick={handleClose}>
       <section className={style.modalmain}>
+      <div className={style.modalHeader} >
+        <img src={logo} alt="Logo" />
         <h2>Zakupownik - krótka pomoc</h2>
+      </div>
         <b>Dodawanie nowego produktu</b>
         <p>Produkt można dodać tylko 1 raz niezaleznie od kategorii oraz czy jest spożywczy, <br/> 
            Nazwa nie może być krótsza niż 3 znaki.<br/>

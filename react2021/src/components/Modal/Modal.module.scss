@@ -18,8 +18,16 @@
     box-shadow: -2rem 2rem 2rem rgba(black, 0.9);
   }
   
+
+.modalHeader {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   h2 {
-    border-bottom: 1px solid #ccc;
+    
     padding: 1rem;
     margin: 0;
   }

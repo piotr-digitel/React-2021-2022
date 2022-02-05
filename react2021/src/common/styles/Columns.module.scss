@@ -7,40 +7,24 @@ $color-yellow: #03002b;
   width: 50vw;
 }
 
-.AppLogo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .AppLogo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .AppHeader {
   background-color: #282c34;
-  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #282c34;
   width: 100%;
   background-image: url('../img/sklep.jpg');
- // background-position: center;
   background-size: cover;
-  padding: 5% 0 0 0;
+  padding: 2% 0 0 0;
 }
 
 .AppHeaderR {
   background-color: #282c34;
-  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
   font-size: calc(10px + 2vmin);
   color: $color-yellow;
   width: 100%;
@@ -50,22 +34,11 @@ $color-yellow: #03002b;
   padding: 5% 0 0 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .AppList{
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-
-
 
 .AppListProd {
   border-left: 5px solid #df7e00;
@@ -77,9 +50,11 @@ $color-yellow: #03002b;
  color: #df7e00
 }
 
-
-
 .ListL {
   padding: 6%;
   background-color: #f1f1f1c2;
+}
+
+b {
+  color: #df7e00;
 }

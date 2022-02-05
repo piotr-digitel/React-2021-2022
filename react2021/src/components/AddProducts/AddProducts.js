@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../common/styles/Headers.module.scss';
 import Modal from "../../components/Modal/Modal";
+import logo from '../.././logo.svg';
 
 class AddProducts extends React.Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class AddProducts extends React.Component {
         const { newProduct, isFood, newCategory } = this.state;  //odczyt stanu zmiennych
         return (
             <div className={styles.WrapperAdd}>
+                <img src={logo} className={styles.AppLogo} alt="logo" />
                 <h3 className={styles.HeaderItems}>Dodawanie nowego produktu:</h3>
                 <p className={styles.HeaderItems}>Nazwa:<input value={newProduct} onChange={this.handleProductChange}></input></p>
                 <p className={styles.HeaderItems}>Kategoria:<input value={newCategory} onChange={this.handleCategoryChange}></input></p>

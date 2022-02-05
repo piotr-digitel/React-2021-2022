@@ -38,7 +38,7 @@
     color: #282c34;
   }
 
-  .CustomSelect {
+.CustomSelect {
     background-color: #d4ad00; /*yellow */
     border: 2px solid #d4ad00;
     color: white;
@@ -54,5 +54,23 @@
     border: 2px solid #282c34;
     color: #282c34;
   }
-  
 
+  .AppLogo {
+    height: 120px;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .AppLogo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+  @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
