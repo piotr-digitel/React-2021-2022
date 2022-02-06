@@ -79,11 +79,11 @@ class ProductsFilters extends React.Component {
                 <h3 className={styles.HeaderItems}>Filtry:</h3>
                 <p className={styles.HeaderItems}>Szukaj po nazwie:<input value={searchPhrase} onChange={this.handleSearchPhraseChange}></input></p>
                 <p className={styles.HeaderItems}>Tylko produkty spożywcze:<input type='checkbox' id="checkbox" onChange={this.handleOnlyFoodChange} value={searchOnlyFood} ></input></p>
-                <p className={styles.CustomSelect}>Kategorie: 
+                <div className={styles.CustomSelect}>Kategorie: 
                 <select value={searchCatType} onChange={this.handleSelectCategory} id="select">
                     <option key={'all'} value={''}>Wszystkie</option>
                     {uniqueCategories.map((kategoria) =><option key={kategoria} value={kategoria}>{kategoria}</option>)}
-                </select></p>
+                </select></div>
                 <button className={styles.button} onClick={this.handleResetFilters}>Zresetuj filtry</button>
             </div>
           );

@@ -25,7 +25,7 @@ const Modal = ({ handleClose, show }) => {
         <b>Lista zakupów</b>   
         <p>Lewy klawisz usuwa produkt z Listy zakupów.<br/>
            Prawy klawisz zaznacza/odznacza produkty już kupione.</p>
-        <p className={style.footermodal}><button type="button" id={style.closeButton} onClick={handleClose}>Zamknij</button></p>
+        <div className={style.footermodal}><button type="button" id={style.closeButton} onClick={handleClose}>Zamknij</button></div>
 
       </section>
     </div>
